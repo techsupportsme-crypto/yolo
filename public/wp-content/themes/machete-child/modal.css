@@ -1,0 +1,676 @@
+:root {
+  --yolo-navy: #071b34;
+  --yolo-gold: #d7ab72;
+  --yolo-cream: #f5ead9;
+  --yolo-text: #071b34;
+  --yolo-white: #ffffff;
+}
+
+/* -------------------------------------------------------------
+   CLICKABLE PLAN CARDS
+------------------------------------------------------------- */
+
+.yolo-card-studio-a,
+.yolo-card-studio-b,
+.yolo-card-one-bed-a,
+.yolo-card-one-bed-b,
+.yolo-card-one-bed-c,
+.yolo-card-two-bed,
+.yolo-card-penthouse,
+.yolo-open-studio-a,
+.yolo-open-studio-b,
+.yolo-open-one-bed-a,
+.yolo-open-one-bed-b,
+.yolo-open-one-bed-c,
+.yolo-open-two-bed,
+.yolo-open-penthouse {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------
+   MODAL WRAPPER
+------------------------------------------------------------- */
+
+.yolo-plan-modal[hidden] {
+  display: none !important;
+}
+
+.yolo-plan-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 32px 18px;
+
+  isolation: isolate;
+}
+
+/* -------------------------------------------------------------
+   MODAL BACKDROP
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: rgba(10, 10, 10, 0.45);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* -------------------------------------------------------------
+   MODAL DIALOG
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-dialog {
+  position: relative;
+  z-index: 2;
+
+  width: min(1350px, 100%);
+  max-height: 98vh;
+
+  background: var(--yolo-white);
+
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+
+  overflow: hidden;
+
+  animation: yoloModalIn 0.28s ease;
+}
+
+@keyframes yoloModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------------------
+   MODAL TOP BAR
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-topbar {
+  position: relative;
+  z-index: 3;
+
+  height: 28px;
+
+  background: var(--yolo-gold);
+}
+
+/* -------------------------------------------------------------
+   CLOSE BUTTON
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-close {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  z-index: 4;
+
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 27px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+}
+
+.yolo-plan-modal .yolo-plan-close:hover {
+  opacity: 0.8;
+}
+
+/* -------------------------------------------------------------
+   MODAL BODY
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-body {
+  display: grid;
+  grid-template-columns: 34% 66%;
+
+  min-height: 475px;
+}
+
+/* -------------------------------------------------------------
+   PLAN INFORMATION
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-info {
+  padding: 20% 12%;
+
+  background: var(--yolo-cream);
+  color: var(--yolo-text);
+
+  text-align: center;
+}
+
+.yolo-plan-modal .yolo-plan-title {
+  margin: 0 0 22px;
+
+  color: var(--yolo-navy);
+
+  font-family: "Myeverything", "MyEverything", cursive;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 0.9;
+
+  text-transform: capitalize;
+}
+
+/* -------------------------------------------------------------
+   TITLE DIVIDER
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-divider {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin: 0 0 34px;
+}
+
+.yolo-plan-modal .yolo-plan-divider::before,
+.yolo-plan-modal .yolo-plan-divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(215, 171, 114, 0.55);
+}
+
+.yolo-plan-modal .yolo-plan-divider span {
+  color: var(--yolo-gold);
+
+  font-size: 28px;
+  line-height: 1;
+
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------------
+   PLAN FIELDS
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-fields {
+  display: grid;
+
+  gap: 11px;
+
+  margin-bottom: 30px;
+
+  text-align: left;
+}
+
+.yolo-plan-modal .yolo-plan-field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  gap: 18px;
+
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.yolo-plan-modal .yolo-plan-field-label {
+  color: var(--yolo-navy);
+
+  font-weight: 400;
+}
+
+.yolo-plan-modal .yolo-plan-field-value {
+  color: var(--yolo-navy);
+
+  font-weight: 700;
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------
+   MODAL ACTION BUTTONS
+   Scoped so normal website buttons are not affected.
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-actions {
+  width: 100%;
+}
+
+.yolo-plan-modal .yolo-plan-actions .yolo-plan-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 42px;
+
+  background: var(--yolo-gold);
+  color: #ffffff !important;
+
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+
+  text-decoration: none !important;
+  text-transform: uppercase;
+
+  transition:
+    opacity 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.yolo-plan-modal .yolo-plan-actions .yolo-plan-download:hover {
+  opacity: 0.9;
+}
+
+.yolo-plan-modal .yolo-plan-actions .yolo-register-interest {
+  background: var(--yolo-navy) !important;
+}
+
+/* -------------------------------------------------------------
+   PLAN SLIDER
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-slider {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 40px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.yolo-plan-modal .yolo-slide-frame {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+
+  overflow: hidden;
+}
+
+.yolo-plan-modal .yolo-slide-frame img {
+  display: block;
+
+  width: min(100%, 800px);
+  max-height: 450px;
+
+  object-fit: contain;
+
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+.yolo-plan-modal .yolo-slide-frame img.is-changing {
+  opacity: 0;
+
+  transform: scale(0.985);
+}
+
+/* -------------------------------------------------------------
+   SLIDER TRACK
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-slide-track {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  transition: transform 650ms cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  will-change: transform;
+}
+
+.yolo-plan-modal .yolo-slide-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.yolo-plan-modal .yolo-slide-item img {
+  display: block;
+
+  width: min(100%, 800px);
+  max-height: 450px;
+
+  object-fit: contain;
+
+  transform: translateZ(0);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* -------------------------------------------------------------
+   SLIDER ARROWS
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-slide-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0 0 8px;
+
+  border: 0;
+
+  background: var(--yolo-gold);
+  color: #ffffff;
+
+  font-size: 34px;
+  line-height: 28px;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition: opacity 0.25s ease;
+}
+
+.yolo-plan-modal .yolo-slide-btn:hover {
+  opacity: 0.85;
+}
+
+.yolo-plan-modal .yolo-slide-prev {
+  left: 18px;
+}
+
+.yolo-plan-modal .yolo-slide-next {
+  right: 18px;
+}
+
+/* -------------------------------------------------------------
+   SLIDER DOTS
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-slide-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+
+  display: flex;
+
+  gap: 8px;
+
+  transform: translateX(-50%);
+}
+
+.yolo-plan-modal .yolo-slide-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: 1px solid var(--yolo-gold);
+  border-radius: 999px;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.yolo-plan-modal .yolo-slide-dot.active {
+  background: var(--yolo-gold);
+}
+
+/* -------------------------------------------------------------
+   FOOTER BAR
+------------------------------------------------------------- */
+
+.yolo-plan-modal .yolo-plan-footerbar {
+  height: 34px;
+
+  background: var(--yolo-navy);
+}
+
+/* -------------------------------------------------------------
+   PAGE SCROLL LOCK
+------------------------------------------------------------- */
+
+html.yolo-modal-is-open,
+body.yolo-modal-is-open {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+/* -------------------------------------------------------------
+   TABLET AND MOBILE
+   Only applies at 900px and below.
+------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .yolo-plan-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+
+    display: block;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    padding: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    touch-action: pan-y;
+  }
+
+  .yolo-plan-modal .yolo-plan-backdrop {
+    position: fixed;
+    inset: 0;
+  }
+
+  .yolo-plan-modal .yolo-plan-dialog {
+    width: calc(100% - 16px);
+    max-width: 100%;
+    max-height: none;
+
+    margin: 8px auto 24px;
+
+    overflow: visible;
+  }
+
+  .yolo-plan-modal .yolo-plan-body {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    min-height: 0;
+  }
+
+  .yolo-plan-modal .yolo-plan-info {
+    padding: 56px 32px 48px;
+  }
+
+  .yolo-plan-modal .yolo-plan-slider {
+    min-height: 380px;
+
+    padding: 36px 48px 54px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame {
+    min-height: 280px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame img,
+  .yolo-plan-modal .yolo-slide-item img {
+    max-height: 300px;
+  }
+}
+
+/* -------------------------------------------------------------
+   SMALL MOBILE
+------------------------------------------------------------- */
+
+@media (max-width: 520px) {
+  .yolo-plan-modal .yolo-plan-dialog {
+    width: 100%;
+
+    margin: 0 auto 24px;
+  }
+
+  .yolo-plan-modal .yolo-plan-info {
+    padding: 42px 24px 38px;
+  }
+
+  .yolo-plan-modal .yolo-plan-title {
+    font-size: 38px;
+  }
+
+  .yolo-plan-modal .yolo-plan-divider {
+    margin-bottom: 28px;
+  }
+
+  .yolo-plan-modal .yolo-plan-fields {
+    margin-bottom: 24px;
+  }
+
+  .yolo-plan-modal .yolo-plan-field {
+    gap: 12px;
+
+    font-size: 12px;
+  }
+
+  /*
+   * Only the two buttons inside the floor-plan modal.
+   * Normal page CTA buttons are not targeted.
+   */
+  .yolo-plan-modal .yolo-plan-actions .yolo-plan-download {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .yolo-plan-modal .yolo-plan-slider {
+    min-height: 330px;
+
+    padding: 28px 38px 52px;
+  }
+
+  .yolo-plan-modal .yolo-slide-btn {
+    width: 30px;
+    height: 30px;
+
+    font-size: 30px;
+  }
+
+  .yolo-plan-modal .yolo-slide-prev {
+    left: 8px;
+  }
+
+  .yolo-plan-modal .yolo-slide-next {
+    right: 8px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame img,
+  .yolo-plan-modal .yolo-slide-item img {
+    max-height: 260px;
+  }
+}
+
+/* -------------------------------------------------------------
+   VERY SMALL MOBILE
+------------------------------------------------------------- */
+
+@media (max-width: 380px) {
+  .yolo-plan-modal .yolo-plan-info {
+    padding: 36px 18px 32px;
+  }
+
+  .yolo-plan-modal .yolo-plan-title {
+    font-size: 34px;
+  }
+
+  .yolo-plan-modal .yolo-plan-field {
+    gap: 8px;
+
+    font-size: 11px;
+  }
+
+  .yolo-plan-modal .yolo-plan-slider {
+    min-height: 300px;
+
+    padding: 24px 34px 48px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame {
+    min-height: 230px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame img,
+  .yolo-plan-modal .yolo-slide-item img {
+    max-height: 230px;
+  }
+}
+
+/* -------------------------------------------------------------
+   SHORT MOBILE DEVICES
+------------------------------------------------------------- */
+
+@media (max-width: 900px) and (max-height: 700px) {
+  .yolo-plan-modal .yolo-plan-info {
+    padding-top: 36px;
+    padding-bottom: 32px;
+  }
+
+  .yolo-plan-modal .yolo-plan-slider {
+    min-height: 290px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame {
+    min-height: 220px;
+  }
+
+  .yolo-plan-modal .yolo-slide-frame img,
+  .yolo-plan-modal .yolo-slide-item img {
+    max-height: 230px;
+  }
+}
